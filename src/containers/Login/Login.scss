@@ -1,12 +1,68 @@
-.login-container {
+@import "../../StyleVariables.scss";
+
+$Login_Page_Padding: 16px;
+
+%textFieldWithBorder {
+    height: 44px;
+    border-radius: 8px;
+    border-color: $lightGrey;
+    border-width: 1px;
+    width: 80%;
+    padding-left: 10px;
+}
+
+.loginPage {
+    padding: $Login_Page_Padding;
+    width:100%;
     height: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: $white;    
+}
+
+.container {
+    width: 80%;
+    height: 200px;
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items:flex-end;
+    justify-content:space-around;
+    margin: 10px;
+    border: 1px $jetBlack;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .message {
     font-size: large;
     font-weight: 100;
     margin: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Helvetica';
+    font-size: large;
+}    
+
+.button {
+    height: 44px;
+    background-color: $blue;
+    border-radius: 8px;
+    border-color: $black;
+    width: 40%;
 }
+
+.userName {
+    @extend %textFieldWithBorder;
+}
+
+.password {
+    @extend %textFieldWithBorder;
+}
+
+
+
+
+
+
 
