@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export enum REST_METHODS {
   GET,
@@ -7,7 +7,7 @@ export enum REST_METHODS {
 }
 
 export enum END_POINT {
-  AUTH_LOGIN = 'http://localhost:3002/Login',
+  TOP_HEADLINES = "https://newsapi.org/v2/top-headlines",
 }
 
 export function callRestAPI(url: string, method: REST_METHODS, payload?: any) {
