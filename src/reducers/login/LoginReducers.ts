@@ -1,25 +1,31 @@
-import { Reducer } from "redux";
 import { IRequestStatus } from "../../sagas/common/Interface";
 import { ILoginState } from "../../sagas/login/interface";
-import { LoginActionTypes } from "../../actions/LoginActions";
+import { createReducer } from "@reduxjs/toolkit";
+import { requestMemberLogin, successMemberLogin, errorMemberLogin, requestMemberLogout } from "../../actions/LoginActions";
 
 const initialState: ILoginState = {
   userName: "",
+  isLoggedIn: false,
   status: IRequestStatus.NONE,
+  message: ""
 };
 
-export const loginReducer: Reducer<ILoginState> = (
-  state = initialState,
-  action
-) => {
-  switch (action.type) {
-    case LoginActionTypes.REQUEST_MEMBER_LOGIN:
-      return { ...state, status: IRequestStatus.LOADING };
-    case LoginActionTypes.SUCCESS_MEMBER_LOGIN:
-      return { ...state, status: IRequestStatus.SUCCESS };
-    case LoginActionTypes.ERROR_MEMBER_LOGIN:
-      return { ...state, status: IRequestStatus.FAILED };
-    default:
-      return { ...initialState };
-  }
-};
+export const loginReducer = createReducer(initialState, (builder) => {
+  builder.addCase(requestMemberLogin, (state, action) => {
+    state.isLoggedIn = false;
+    state.status = IRequestStatus.INPROGRESS;
+    state.userName = action.payload.userName;
+  })
+  .addCase(successMemberLogin, (state) => {
+    state.isLoggedIn = true;
+    state.status = IRequestStatus.SUCCESS;
+  })
+  .addCase(errorMemberLogin, (state) => {
+    state.isLoggedIn = false;
+    state.status = IRequestStatus.FAILED;
+    state.userName = "";
+  })
+  .addCase(requestMemberLogout, (state) => {
+    state.isLoggedIn = false;
+  });
+});

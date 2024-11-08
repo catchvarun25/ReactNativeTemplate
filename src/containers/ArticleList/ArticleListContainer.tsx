@@ -2,7 +2,6 @@ import React from "react";
 import { IAppRootState } from "../../reducers";
 import { Dispatch } from "redux";
 import { IArticleListRequest } from "../../sagas/articleList/Interface";
-import { requestArticleList } from "../../actions/ArticleListActions";
 import { View, Text } from "react-native";
 import { connect } from "react-redux";
 

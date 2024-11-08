@@ -12,5 +12,7 @@ export interface ILoginResponse {
 
 export interface ILoginState {
   userName: string;
+  isLoggedIn: boolean;
   status: IRequestStatus;
+  message: string;
 }

@@ -7,7 +7,7 @@ export enum IRequestErrorType {
 
 export enum IRequestStatus {
   NONE,
-  LOADING,
+  INPROGRESS,
   SUCCESS,
   FAILED,
 }
