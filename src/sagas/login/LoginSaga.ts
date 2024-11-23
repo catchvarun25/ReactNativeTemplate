@@ -18,7 +18,7 @@ function* requestLoginMember(payload: any) {
     //   payload
     // );
     //TODO: Remove this hard coding later
-    yield delay(2000);
+    // yield delay(2000);
     const loginResponse: ILoginResponse = {
       status: IRequestStatus.SUCCESS,
       message: "Success Logged In",

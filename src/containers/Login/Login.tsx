@@ -33,10 +33,11 @@ const LoginScreen = (props: ILoginScreenProps) => {
   };
 
   const handleLogin = () => {
-    requestLogin({
-      userName: userName,
-      password: password,
-    });
+    // requestLogin({
+    //   userName: userName,
+    //   password: password,
+    // });
+    navigation.navigate(IScreenName.ArticlesList);
   };
 
   useEffect(() => {

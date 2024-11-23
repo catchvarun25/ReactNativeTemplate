@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { loginReducer } from "./login/LoginReducers";
-import { articleListReducer } from "./articleList/ArticleListReducers";
+import { loginReducer } from "./LoginReducers";
+import { articleListReducer } from "./ArticleListReducers";
 import { ILoginState } from "../sagas/login/interface";
 import { IArticleListState } from "../sagas/articleList/Interface";
 

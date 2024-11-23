@@ -1,0 +1,40 @@
+@import "../StyleVariables.scss";
+
+.contaier {
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px;
+    border-color: $lightGrey;
+}
+.image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.content {
+    justify-content: center;
+    flex: 1;
+}
+
+.title {
+    font-size: $fontSize18px;
+    color: $black;
+    font-weight: bold;
+}
+
+.description {
+    font-size: $fontSize14px;
+    color: $lightGrey;
+    margin-top: 6px;
+}
+
+.author {
+    font-size: $fontSize12px;
+    color: $green;
+}
+
+.source {
+    font-size: $fontSize12px;
+    color: $purple;
+}

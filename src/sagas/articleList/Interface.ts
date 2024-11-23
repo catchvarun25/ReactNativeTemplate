@@ -1,9 +1,11 @@
 import { IRequestStatus } from "../common/Interface";
 
+//TODO: Update supported countries
 export interface IArticleListRequest {
-  page: string;
-  pageSize: Number;
+  page: number;
+  pageSize: number;
   category: ICategoryType;
+  country: string;
 }
 
 export enum ICategoryType {
@@ -37,6 +39,6 @@ export interface IArticleItemResponse {
 }
 
 export interface IArticleSourceState {
-  id: string;
+  id?: string;
   name?: string;
 }

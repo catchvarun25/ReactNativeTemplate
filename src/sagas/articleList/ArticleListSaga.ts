@@ -1,31 +1,30 @@
 import { takeLatest, fork, call, put } from "redux-saga/effects";
 import {
-  ArticleListActionTypes,
+  requestArticleList,
   errorArticleList,
   successArticleList,
 } from "../../actions/ArticleListActions";
 import { callRestAPI, END_POINT, REST_METHODS } from "../../WebService";
-import { IArticleListResponse } from "./Interface";
+import { IArticleListResponse, IArticleListRequest } from "./Interface";
 
-function* requestArticleList(payload: any) {
+//TODO: Can we use IArticleListRequest
+function* getArticleList(action: any) {
   try {
     const response: IArticleListResponse = yield call(
       callRestAPI,
       END_POINT.TOP_HEADLINES,
       REST_METHODS.GET,
-      payload
+      action.payload
     );
-    yield put(successArticleList(response));
+    console.log("Varun Response:", response);
+    yield put(successArticleList(response.data ?? {}));
   } catch (error) {
     yield put(errorArticleList);
   }
 }
 
 function* watchArticleList() {
-  yield takeLatest(
-    ArticleListActionTypes.REQUEST_GET_ARTICLE_LIST,
-    requestArticleList
-  );
+  yield takeLatest(requestArticleList.type, getArticleList);
 }
 
 const articleListSaga = [fork(watchArticleList)];
