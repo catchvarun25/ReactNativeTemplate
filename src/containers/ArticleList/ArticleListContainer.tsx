@@ -37,15 +37,19 @@ const ArticleListContainer = (props: IArticleListContainer) => {
 
   const renderItem = ({ item }: ListRenderItemInfo<IArticleItemResponse>) => {
     return (
-      <VMArticleListItem
-        itemData={item}
-        didSelectArticle={handleArticleClick}
-      />
+      <>
+        {item.urlToImage && (
+          <VMArticleListItem
+            itemData={item}
+            didSelectArticle={handleArticleClick}
+          />
+        )}
+      </>
     );
   };
 
   return (
-    <View>
+    <View style={{ padding: 10 }}>
       {articles ? (
         <FlatList
           data={articles}
