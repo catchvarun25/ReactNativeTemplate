@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#If you&#x2019;ve previously built the app and Info.plist was generated using outdated environment variables, this ensures a fresh copy is created.&#10;rm &quot;${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}&quot;&#10;&#10;#This writes .env.development as a string.&#10;#&gt; /tmp/envfile: This redirects the output to a temporary file called envfile located in the system&#x2019;s /tmp directory.&#10;echo &quot;.env.production&quot; &gt; /tmp/envfile&#10;">
+               scriptText = "#If you&#x2019;ve previously built the app and Info.plist was generated using outdated environment variables, this ensures a fresh copy is created.&#10;rm &quot;${CONFIGURATION_BUILD_DIR}/${INFOPLIST_PATH}&quot;&#10;&#10;#This writes .env.development as a string.&#10;#&gt; /tmp/envfile: This redirects the output to a temporary file called envfile located in the system&#x2019;s /tmp directory.&#10;echo &quot;.env.development&quot; &gt; /tmp/envfile&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
