@@ -3,7 +3,7 @@
 .container {
     flex-direction: row;
     border-color: $lightGrey;
-    padding: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px;
     border-color: $lightGrey;
 }
@@ -15,14 +15,16 @@
 
 .content {
     margin-left: 10px;
+    width: 70%;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
 }
 
 .title {
     font-size: $fontSize14px;
     color: $black;
+    margin-bottom: $s;
     font-weight: bold;
 }
 

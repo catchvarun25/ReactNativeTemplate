@@ -5,19 +5,17 @@ import {
   successArticleList,
 } from "../../actions/ArticleListActions";
 import { callRestAPI, END_POINT, REST_METHODS } from "../../WebService";
-import { IArticleListResponse, IArticleListRequest } from "./Interface";
 
 //TODO: Can we use IArticleListRequest
 function* getArticleList(action: any) {
   try {
-    const response: IArticleListResponse = yield call(
+    const { data } = yield call(
       callRestAPI,
       END_POINT.TOP_HEADLINES,
       REST_METHODS.GET,
       action.payload
     );
-    console.log("Varun Response:", response);
-    yield put(successArticleList(response.data ?? {}));
+    yield put(successArticleList(data ?? {}));
   } catch (error) {
     yield put(errorArticleList);
   }

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { IAppRootState } from "../../reducers";
+import styles from "./ArticleListContainer.scss";
 import { Dispatch } from "redux";
 import {
   IArticleItemResponse,
@@ -19,10 +20,9 @@ interface IArticleListContainer extends NativeStackHeaderProps {
 }
 
 const ArticleListContainer = (props: IArticleListContainer) => {
+  const ARTICLE_ITEM_HEIGHT = 150;
   const { navigation, articles, requestArticleList } = props;
-
-  const handleArticleClick = (articleUrl: string) => {
-    console.log(`ArticleUrl: ${articleUrl}`);
+  const handleArticleClick = (article: IArticleItemResponse) => {
     // navigation.navigate(IScreenName.ArticleDetail);
   };
 
@@ -30,31 +30,41 @@ const ArticleListContainer = (props: IArticleListContainer) => {
     requestArticleList({
       page: 0,
       pageSize: 20,
-      category: ICategoryType.GENERAL,
+      category: ICategoryType.BUSINESS,
       country: "us",
     });
   }, []);
 
-  const renderItem = ({ item }: ListRenderItemInfo<IArticleItemResponse>) => {
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<IArticleItemResponse>) => {
     return (
-      <>
-        {item.urlToImage && (
-          <VMArticleListItem
-            itemData={item}
-            didSelectArticle={handleArticleClick}
-          />
-        )}
-      </>
+      <VMArticleListItem
+        itemData={item}
+        didSelectArticle={handleArticleClick}
+      />
     );
-  };
+  }, []);
+
+  const keyExtractor = useCallback((item: IArticleItemResponse) => {
+    return item.url;
+  }, [])
+
+  const getItemLayout = useCallback((_, index) => ({
+    length: ARTICLE_ITEM_HEIGHT,
+    offset: ARTICLE_ITEM_HEIGHT * index,
+    index,
+  }), []);
 
   return (
-    <View style={{ padding: 10 }}>
+    <View style={styles.container}>
       {articles ? (
         <FlatList
-          data={articles}
+          data={articles.filter((article) => article.urlToImage)}
           renderItem={renderItem}
-          keyExtractor={(item) => item.url ?? ""}
+          keyExtractor={keyExtractor}
+          showsVerticalScrollIndicator={false}
+          initialNumToRender={6}
+          windowSize={3}
+          getItemLayout={getItemLayout}
         />
       ) : (
         <Text>{`Loading Content....`}</Text>
