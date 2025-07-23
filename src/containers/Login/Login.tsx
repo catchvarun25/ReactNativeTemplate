@@ -15,7 +15,14 @@ import {
   IScreenName,
 } from "../../navigations/NavigationTypes";
 import { Dispatch } from "redux";
-import { requestMemberLogin } from "../../actions/LoginActions";
+import { requestMemberLogin } from "../../reducers/LoginReducers";
+
+// LEARN: 1. NativeStackScreenProps to strongly type the props 
+// passed to your screen component from the navigation system.
+// Not-Strong Typed: props.navigation.navigate('ArticlesList');
+// Strong Tped: props.navigation.navigate(IScreenName.ArticlesList);
+// 2. Provides Autocomplete and Param Type Checks
+// navigation.navigate('ArticleDetail'); // ❌ Missing required param `articleId`
 
 export interface ILoginScreenProps
   extends NativeStackScreenProps<RootStackParamList, IScreenName.Login> {
@@ -23,7 +30,8 @@ export interface ILoginScreenProps
   requestLogin: (payload: ILoginRequest) => void;
 }
 
-const LoginScreen = (props: ILoginScreenProps) => {
+export const LoginScreen = (props: ILoginScreenProps) => {
+  // navigation coming from NativeStackScreenProps
   const { requestLogin, loginStatus, navigation } = props;
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");

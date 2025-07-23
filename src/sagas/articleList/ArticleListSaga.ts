@@ -3,7 +3,7 @@ import {
   requestArticleList,
   errorArticleList,
   successArticleList,
-} from "../../actions/ArticleListActions";
+} from "../../reducers/ArticleListReducers";
 import { callRestAPI, END_POINT, REST_METHODS } from "../../WebService";
 
 //TODO: Can we use IArticleListRequest

@@ -1,28 +1,35 @@
 import { IRequestStatus } from "../sagas/common/Interface";
-import { IArticleListState } from "../sagas/articleList/Interface";
-import { createReducer } from "@reduxjs/toolkit";
-import {
-  requestArticleList,
-  successArticleList,
-  errorArticleList,
-} from "../actions/ArticleListActions";
+import { IArticleListResponse, IArticleListState } from "../sagas/articleList/Interface";
+import { createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { IArticleListRequest } from "../sagas/articleList/Interface";
 
 const initialState: IArticleListState = {
   articles: [],
   status: IRequestStatus.NONE,
 };
 
-export const articleListReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(requestArticleList, (state, action) => {
+const articleListSlice = createSlice({
+  name: 'ArticleListSlice',
+  initialState,
+  reducers: {
+    requestArticleList:(state, action: PayloadAction<IArticleListRequest>) => {
       state.status = IRequestStatus.INPROGRESS;
       state.articles = [];
-    })
-    .addCase(successArticleList, (state, action) => {
+    },
+    successArticleList:(state, action: PayloadAction<IArticleListResponse>) => {
       state.status = IRequestStatus.SUCCESS;
       state.articles = action.payload.articles;
-    })
-    .addCase(errorArticleList, (state, action) => {
+    },
+    errorArticleList:(state, action: PayloadAction<IArticleListResponse>) => {
       state.status = IRequestStatus.FAILED;
-    });
+    }
+  }
 });
+
+export default articleListSlice;
+export const {
+  requestArticleList,
+  successArticleList,
+  errorArticleList
+} = articleListSlice.actions
+

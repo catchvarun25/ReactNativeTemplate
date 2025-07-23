@@ -8,7 +8,7 @@ import {
   ICategoryType,
 } from "../../sagas/articleList/Interface";
 import { View, Text, FlatList, ListRenderItemInfo } from "react-native";
-import { requestArticleList } from "../../actions/ArticleListActions";
+import { requestArticleList } from "../../reducers/ArticleListReducers";
 import { connect } from "react-redux";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { IScreenName } from "../../navigations/NavigationTypes";

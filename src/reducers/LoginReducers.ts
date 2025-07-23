@@ -1,12 +1,7 @@
 import { IRequestStatus } from "../sagas/common/Interface";
+import { ILoginRequest, ILoginResponse } from "../sagas/login/interface";
 import { ILoginState } from "../sagas/login/interface";
-import { createReducer } from "@reduxjs/toolkit";
-import {
-  requestMemberLogin,
-  successMemberLogin,
-  errorMemberLogin,
-  requestMemberLogout,
-} from "../actions/LoginActions";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: ILoginState = {
   userName: "",
@@ -15,23 +10,34 @@ const initialState: ILoginState = {
   message: "",
 };
 
-export const loginReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(requestMemberLogin, (state, action) => {
+const loginSlice = createSlice({
+  name: "LoginSlice",
+  initialState,
+  reducers: {
+    requestMemberLogin: (state, action: PayloadAction<ILoginRequest>) => {
       state.isLoggedIn = false;
       state.status = IRequestStatus.INPROGRESS;
       state.userName = action.payload.userName;
-    })
-    .addCase(successMemberLogin, (state) => {
+    },
+    successMemberLogin: (state, action: PayloadAction<ILoginResponse>) => {
       state.isLoggedIn = true;
       state.status = IRequestStatus.SUCCESS;
-    })
-    .addCase(errorMemberLogin, (state) => {
+    },
+    errorMemberLogin: (state, action: PayloadAction<ILoginResponse>) => {
       state.isLoggedIn = false;
       state.status = IRequestStatus.FAILED;
       state.userName = "";
-    })
-    .addCase(requestMemberLogout, (state) => {
+    },
+    requestMemberLogout: (state) => {
       state.isLoggedIn = false;
-    });
+    },
+  },
 });
+
+export default loginSlice;
+export const {
+  requestMemberLogin,
+  successMemberLogin,
+  errorMemberLogin,
+  requestMemberLogout,
+} = loginSlice.actions;

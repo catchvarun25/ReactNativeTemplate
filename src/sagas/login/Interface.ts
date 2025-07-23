@@ -8,6 +8,7 @@ export interface ILoginRequest {
 export interface ILoginResponse {
   status: IRequestStatus;
   message: string;
+  errorCode?: string;
 }
 
 export interface ILoginState {

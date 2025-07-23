@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { loginReducer } from "./LoginReducers";
-import { articleListReducer } from "./ArticleListReducers";
+import loginSlice from "./LoginReducers";
+import articleListSlice from "./ArticleListReducers";
 import { ILoginState } from "../sagas/login/interface";
 import { IArticleListState } from "../sagas/articleList/Interface";
 
@@ -10,8 +10,8 @@ export interface IAppRootState {
 }
 
 const rootReducer = combineReducers({
-  loginState: loginReducer,
-  articleListState: articleListReducer,
+  loginState: loginSlice.reducer,
+  articleListState: articleListSlice.reducer,
 });
 
 export default rootReducer;

@@ -5,7 +5,8 @@ import {
   requestMemberLogin,
   successMemberLogin,
   errorMemberLogin,
-} from "../../actions/LoginActions";
+} from "../../reducers/LoginReducers";
+
 import { ILoginResponse } from "./interface";
 import { IRequestStatus } from "../common/Interface";
 
