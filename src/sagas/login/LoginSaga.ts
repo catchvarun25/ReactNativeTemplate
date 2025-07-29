@@ -8,7 +8,7 @@ import {
 } from "../../reducers/LoginReducers";
 
 import { ILoginResponse } from "./interface";
-import { IRequestStatus } from "../common/Interface";
+import { ERequestStatus } from "../../utility/CommonInterface";
 
 function* requestLoginMember(payload: any) {
   try {
@@ -21,13 +21,13 @@ function* requestLoginMember(payload: any) {
     //TODO: Remove this hard coding later
     // yield delay(2000);
     const loginResponse: ILoginResponse = {
-      status: IRequestStatus.SUCCESS,
+      status: ERequestStatus.SUCCESS,
       message: "Success Logged In",
     };
     yield put(successMemberLogin(loginResponse));
   } catch (error) {
     const loginResponse: ILoginResponse = {
-      status: IRequestStatus.FAILED,
+      status: ERequestStatus.FAILED,
       message: error.message,
     };
     console.log("Error: ", error);

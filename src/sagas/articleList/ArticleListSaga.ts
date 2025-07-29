@@ -5,15 +5,20 @@ import {
   successArticleList,
 } from "../../reducers/ArticleListReducers";
 import { callRestAPI, END_POINT, REST_METHODS } from "../../WebService";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { IArticleListRequest, API_PAGES_SIZE } from "./Interface";
 
 //TODO: Can we use IArticleListRequest
-function* getArticleList(action: any) {
+function* getArticleList(action: PayloadAction<IArticleListRequest>) {
   try {
     const { data } = yield call(
       callRestAPI,
       END_POINT.TOP_HEADLINES,
       REST_METHODS.GET,
-      action.payload
+      {
+        ...action.payload,
+        pageSize: API_PAGES_SIZE,
+      }
     );
     yield put(successArticleList(data ?? {}));
   } catch (error) {

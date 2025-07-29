@@ -1,11 +1,14 @@
-import { IRequestStatus } from "../sagas/common/Interface";
+import { ERequestStatus } from "../utility/CommonInterface";
 import { IArticleListResponse, IArticleListState } from "../sagas/articleList/Interface";
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 import { IArticleListRequest } from "../sagas/articleList/Interface";
+import { API_PAGES_SIZE } from "../sagas/articleList/Interface";
 
 const initialState: IArticleListState = {
   articles: [],
-  status: IRequestStatus.NONE,
+  status: ERequestStatus.NONE,
+  page: 0,
+  shouldLoadMore: true,
 };
 
 const articleListSlice = createSlice({
@@ -13,15 +16,16 @@ const articleListSlice = createSlice({
   initialState,
   reducers: {
     requestArticleList:(state, action: PayloadAction<IArticleListRequest>) => {
-      state.status = IRequestStatus.INPROGRESS;
-      state.articles = [];
+      state.status = ERequestStatus.INPROGRESS;
+      state.page = action.payload.page;
     },
     successArticleList:(state, action: PayloadAction<IArticleListResponse>) => {
-      state.status = IRequestStatus.SUCCESS;
-      state.articles = action.payload.articles;
+      state.status = ERequestStatus.SUCCESS;
+      state.articles = [...state.articles , ...action.payload.articles];
+      state.shouldLoadMore = state.articles.length < action.payload.totalResults;
     },
     errorArticleList:(state, action: PayloadAction<IArticleListResponse>) => {
-      state.status = IRequestStatus.FAILED;
+      state.status = ERequestStatus.FAILED;
     }
   }
 });

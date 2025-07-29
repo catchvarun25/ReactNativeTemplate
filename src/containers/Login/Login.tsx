@@ -6,7 +6,7 @@ import VMTextField from "../../components/VMTextField";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { connect } from "react-redux";
 import { IAppRootState } from "../../reducers";
-import { IRequestStatus } from "../../sagas/common/Interface";
+import { ERequestStatus } from "../../utility/CommonInterface";
 import { ILoginRequest } from "../../sagas/login/interface";
 import Subtract from "../../assets/subtract.svg";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -26,7 +26,7 @@ import { requestMemberLogin } from "../../reducers/LoginReducers";
 
 export interface ILoginScreenProps
   extends NativeStackScreenProps<RootStackParamList, IScreenName.Login> {
-  loginStatus: IRequestStatus;
+  loginStatus: ERequestStatus;
   requestLogin: (payload: ILoginRequest) => void;
 }
 
@@ -45,11 +45,11 @@ export const LoginScreen = (props: ILoginScreenProps) => {
     //   userName: userName,
     //   password: password,
     // });
-    navigation.navigate(IScreenName.ArticlesList);
+    navigation.replace(IScreenName.ArticlesList);
   };
 
   useEffect(() => {
-    if (loginStatus == IRequestStatus.SUCCESS) {
+    if (loginStatus == ERequestStatus.SUCCESS) {
       navigation.navigate(IScreenName.ArticlesList);
     }
   }, [loginStatus]);

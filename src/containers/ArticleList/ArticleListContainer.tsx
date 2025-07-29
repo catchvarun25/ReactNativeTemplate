@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { IAppRootState } from "../../reducers";
 import styles from "./ArticleListContainer.scss";
 import { Dispatch } from "redux";
@@ -13,26 +13,38 @@ import { connect } from "react-redux";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { IScreenName } from "../../navigations/NavigationTypes";
 import VMArticleListItem from "../../components/VMArticleListItem";
+import withLoader from "../../hocs/WithLoader";
+import { ERequestStatus } from "../../utility/CommonInterface";
+import { API_PAGES_SIZE } from "../../sagas/articleList/Interface";
 
 interface IArticleListContainer extends NativeStackHeaderProps {
   articles: Array<IArticleItemResponse>;
-  requestArticleList: (payload: IArticleListRequest) => void;
 }
 
-const ArticleListContainer = (props: IArticleListContainer) => {
+type StateProps = ReturnType<typeof mapStateToProps>
+type DispatchProps = ReturnType<typeof mapDispatchToProps>
+
+
+const ArticleListContainer = (props: IArticleListContainer & StateProps & DispatchProps) => {
   const ARTICLE_ITEM_HEIGHT = 150;
-  const { navigation, articles, requestArticleList } = props;
+  const { articles, requestArticleList, status, shouldLoadMore } = props;
+  const pageNumber = useRef(0);
   const handleArticleClick = (article: IArticleItemResponse) => {
     // navigation.navigate(IScreenName.ArticleDetail);
   };
 
-  useEffect(() => {
+    //TODO: Add Profile page to update the current location. Which is auto adjusted to usesr current location
+  const requestMoreArticles = () => {
+
     requestArticleList({
-      page: 0,
-      pageSize: 20,
+      page: pageNumber.current,
       category: ICategoryType.BUSINESS,
       country: "us",
     });
+  }
+
+  useEffect(() => {
+    requestMoreArticles();
   }, []);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<IArticleItemResponse>) => {
@@ -44,31 +56,36 @@ const ArticleListContainer = (props: IArticleListContainer) => {
     );
   }, []);
 
-  const keyExtractor = useCallback((item: IArticleItemResponse) => {
-    return item.url;
+  const keyExtractor = useCallback((item: IArticleItemResponse, index: number) => {
+    return `fallback-${index}`;
   }, [])
 
-  const getItemLayout = useCallback((_, index) => ({
+  const getItemLayout = useCallback((_, index: number) => ({
     length: ARTICLE_ITEM_HEIGHT,
     offset: ARTICLE_ITEM_HEIGHT * index,
     index,
   }), []);
 
+  const loadeMoreData = () => {
+    if (status !== ERequestStatus.INPROGRESS && shouldLoadMore) {
+      pageNumber.current = pageNumber.current + 1;
+      requestMoreArticles();
+    }
+  }
+
   return (
     <View style={styles.container}>
-      {articles ? (
         <FlatList
           data={articles.filter((article) => article.urlToImage)}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
-          initialNumToRender={6}
-          windowSize={3}
+          initialNumToRender={API_PAGES_SIZE}
+          windowSize={11}
           getItemLayout={getItemLayout}
+          onEndReached={loadeMoreData}
+          onEndReachedThreshold={0.5}
         />
-      ) : (
-        <Text>{`Loading Content....`}</Text>
-      )}
     </View>
   );
 };
@@ -76,6 +93,8 @@ const ArticleListContainer = (props: IArticleListContainer) => {
 const mapStateToProps = (state: IAppRootState) => {
   return {
     articles: state.articleListState.articles,
+    status: state.articleListState.status,
+    shouldLoadMore: state.articleListState.shouldLoadMore,
   };
 };
 

@@ -1,9 +1,10 @@
-import { IRequestStatus } from "../common/Interface";
+import { ERequestStatus } from "../../utility/CommonInterface";
+
+export const API_PAGES_SIZE = 15;
 
 //TODO: Update supported countries
 export interface IArticleListRequest {
   page: number;
-  pageSize: number;
   category: ICategoryType;
   country: string;
 }
@@ -20,17 +21,21 @@ export enum ICategoryType {
 
 export interface IArticleListState {
   articles: Array<IArticleItemResponse>;
-  status: IRequestStatus;
+  status: ERequestStatus;
+  page: number;
+  shouldLoadMore: boolean;
 }
 
 export interface IArticleListResponse {
   articles: Array<IArticleItemResponse>;
+  status:string;
+  totalResults: number;
 }
 
 export interface IArticleItemResponse {
   source?: IArticleSourceState;
   author?: string;
-  title?: string;
+  title: string;
   description?: string;
   url?: string;
   urlToImage?: string;

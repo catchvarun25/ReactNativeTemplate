@@ -1,13 +1,12 @@
-export enum IRequestErrorType {
+export enum ERequestErrorType {
   InvalidRquest = "InvalidRquest",
   NoConnectivity = "NoInternetConnectivity",
   InvalidResponse = "InvalidResponse",
   RequestFailed = "RequestFailed",
 }
-
-export enum IRequestStatus {
-  NONE,
-  INPROGRESS,
-  SUCCESS,
-  FAILED,
+export enum ERequestStatus {
+  NONE = "none",
+  INPROGRESS = "inProgress",
+  SUCCESS = "success",
+  FAILED = "failed",
 }

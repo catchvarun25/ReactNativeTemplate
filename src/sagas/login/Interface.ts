@@ -1,4 +1,4 @@
-import { IRequestStatus } from "../common/Interface";
+import { ERequestStatus } from "../../utility/CommonInterface";
 
 export interface ILoginRequest {
   userName: string;
@@ -6,7 +6,7 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-  status: IRequestStatus;
+  status: ERequestStatus;
   message: string;
   errorCode?: string;
 }
@@ -14,6 +14,6 @@ export interface ILoginResponse {
 export interface ILoginState {
   userName: string;
   isLoggedIn: boolean;
-  status: IRequestStatus;
+  status: ERequestStatus;
   message: string;
 }
