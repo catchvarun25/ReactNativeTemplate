@@ -1,11 +1,13 @@
+import { IArticleItemResponse } from "../sagas/articleList/Interface";
+
 export type RootStackParamList = {
   Login: undefined;
   ArticlesList: undefined;
-  ArticleDetail: { articleId: number };
+  ArticleDetails: { selectedArticle: IArticleItemResponse };
 };
 
 export enum IScreenName {
   Login = "Login",
   ArticlesList = "ArticlesList",
-  ArticleDetail = "ArticleDetail",
+  ArticleDetails = "ArticleDetails",
 }

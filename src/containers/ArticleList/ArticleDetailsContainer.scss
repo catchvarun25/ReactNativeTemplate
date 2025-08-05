@@ -1,0 +1,36 @@
+@import "../../StyleVariables.scss";
+
+.container {
+    flex: 1;
+}
+
+.imageContainer {
+    flex: 2
+}
+
+.descriptionContainer {
+    flex: 3;
+    background-color:white;
+}
+
+.descriptionTitle {
+    font-size: $fontSize16px;
+    color: $black;
+    font-weight: 500;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+    margin-right: 16px;
+    line-height: 22px;
+}
+
+.descriptionDetail {
+    font-size: $fontSize16px;
+    color: $black;
+    font-weight: 300;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+    margin-right: 16px;
+    line-height: 22px;
+}

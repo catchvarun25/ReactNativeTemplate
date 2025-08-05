@@ -2,6 +2,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from "../store"; // Adjust the path to your store
 import AppNavigator from "../navigations/AppNavigator"; // Your app's navigation
+import { GestureHandlerRootView } from "react-native-gesture-handler"; //For managing gestures in app
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { DevSettings, NativeModules } from "react-native";
 const App = () => {
   // eslint-disable-next-line require-await
@@ -23,9 +25,13 @@ const App = () => {
   }, 200);
 
   return (
-    <Provider store={store}>
-      <AppNavigator />
-    </Provider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Provider store={store}>
+        <BottomSheetModalProvider>
+          <AppNavigator />
+        </BottomSheetModalProvider>
+      </Provider>
+    </GestureHandlerRootView>
   );
 };
 

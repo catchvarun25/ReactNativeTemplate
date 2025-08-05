@@ -21,7 +21,6 @@ const VMArticleListItem = React.memo((props: IVMArticleListItem) => {
     author,
     source: { name: sourceName } = {},
   } = itemData;
-  console.log('Rendering:', itemData.url);
 
   return (
     <TouchableOpacity
