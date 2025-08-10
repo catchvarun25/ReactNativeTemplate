@@ -21,8 +21,8 @@ function* getArticleList(action: PayloadAction<IArticleListRequest>) {
       }
     );
     yield put(successArticleList(data ?? {}));
-  } catch (error) {
-    yield put(errorArticleList);
+  } catch {
+    yield put(errorArticleList("Request failed. Please try again later."));
   }
 }
 

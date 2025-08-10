@@ -1,0 +1,31 @@
+@import "../StyleVariables.scss";
+
+.container {
+  flex: 1;
+}
+
+.contentContainer {
+  flex: 1;
+}
+
+.bottomContainer {
+  margin-top: $xxl;
+}
+
+.dismissButton {
+  position: absolute;
+  top: 0;
+  right: 16;
+  z-index: 10;
+}
+.dismissText {
+  font-size: $fontSize20px;
+  text-align: center;
+  font-weight: 500;
+  font-family: Helvetica;
+  color: $black;
+  background-color: lightgrey;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}

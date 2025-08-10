@@ -22,13 +22,14 @@ export enum ICategoryType {
 export interface IArticleListState {
   articles: Array<IArticleItemResponse>;
   status: ERequestStatus;
+  message?: string;
   page: number;
   shouldLoadMore: boolean;
 }
 
 export interface IArticleListResponse {
   articles: Array<IArticleItemResponse>;
-  status:string;
+  status: string;
   totalResults: number;
 }
 

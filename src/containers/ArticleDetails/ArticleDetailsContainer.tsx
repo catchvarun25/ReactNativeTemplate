@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import FastImage from "react-native-fast-image";
 import { Text, View } from "react-native";
-import VMDrawerView from "../../components/VMDrawerView";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import styles from "./ArticleDetailsContainer.scss";
 import {
@@ -14,6 +13,7 @@ import {
   State,
 } from "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import ArticleDetailsDrawerView from "./ArticleDetailsDrawerView";
 
 export interface IArticleDetailsContainer
   extends NativeStackScreenProps<
@@ -56,20 +56,9 @@ const ArticleDetailsContainer = (props: IArticleDetailsContainer) => {
           </View>
         </View>
       </TapGestureHandler>
-      <VMDrawerView
+      <ArticleDetailsDrawerView
+        articleItem={selectedArticle}
         ref={bottomSheetRef}
-        showDismissButton
-        enableSwipeDownToDismiss
-        children={
-          <View>
-            <Text style={{ fontSize: 16 }}>{selectedArticle.content}</Text>
-          </View>
-        }
-        bottomView={
-          <Text style={{ textAlign: "center", padding: 10 }}>
-            {"End of article"}
-          </Text>
-        }
       />
     </>
   );
