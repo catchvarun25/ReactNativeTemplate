@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { forwardRef, useCallback } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import styles from "./VMDrawerView.scss";
 import {
@@ -27,12 +22,6 @@ const VMDrawerView = forwardRef<BottomSheetModal, IVMDrawerView>(
       enableSwipeDownToDismiss = true,
       showDismissButton = false,
     } = props;
-    // const bottomSheetRef = useRef<BottomSheetModal>(null);
-
-    // useImperativeHandle(ref, () => ({
-    //   present: bottomSheetRef.current?.present,
-    //   dismiss: bottomSheetRef.current?.dismiss,
-    // }));
 
     const renderBackdropComponent = useCallback(
       (props: BottomSheetBackdropProps) => {

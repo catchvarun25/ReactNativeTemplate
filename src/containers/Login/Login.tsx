@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Login.scss";
-import { View, Text, SafeAreaView, useColorScheme } from "react-native";
+import { View, Text, useColorScheme } from "react-native";
 import VMButton from "../../components/VMButton";
 import VMTextField from "../../components/VMTextField";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -16,8 +16,9 @@ import {
 } from "../../navigations/NavigationTypes";
 import { Dispatch } from "redux";
 import { requestMemberLogin } from "../../reducers/LoginReducers";
+import { useTranslation } from "react-i18next";
 
-// LEARN: 1. NativeStackScreenProps to strongly type the props 
+// LEARN: 1. NativeStackScreenProps to strongly type the props
 // passed to your screen component from the navigation system.
 // Not-Strong Typed: props.navigation.navigate('ArticlesList');
 // Strong Tped: props.navigation.navigate(IScreenName.ArticlesList);
@@ -36,6 +37,7 @@ export const LoginScreen = (props: ILoginScreenProps) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const isDarkMode = useColorScheme() === "dark";
+  const { t } = useTranslation();
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -60,17 +62,17 @@ export const LoginScreen = (props: ILoginScreenProps) => {
       <Text style={styles.message}>Login</Text>
       <View style={styles.container}>
         <VMTextField
-          placeholder="Enter User Name"
+          placeholder={t("loginScreen.userName")}
           value={userName}
           onChangeText={setUserName}
         />
         <VMTextField
-          placeholder="Enter Password"
+          placeholder={t("loginScreen.password")}
           value={password}
           onChangeText={setPassword}
         />
         <VMButton
-          title={"Log In"}
+          title={t("loginScreen.logIn")}
           containerStyle={styles.button}
           onPress={handleLogin}
         />

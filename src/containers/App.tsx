@@ -5,6 +5,9 @@ import AppNavigator from "../navigations/AppNavigator"; // Your app's navigation
 import { GestureHandlerRootView } from "react-native-gesture-handler"; //For managing gestures in app
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { DevSettings, NativeModules } from "react-native";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18n";
+
 const App = () => {
   // eslint-disable-next-line require-await
   const main = async () => {
@@ -26,11 +29,13 @@ const App = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Provider store={store}>
-        <BottomSheetModalProvider>
-          <AppNavigator />
-        </BottomSheetModalProvider>
-      </Provider>
+      <I18nextProvider i18n={i18n}>
+        <Provider store={store}>
+          <BottomSheetModalProvider>
+            <AppNavigator />
+          </BottomSheetModalProvider>
+        </Provider>
+      </I18nextProvider>
     </GestureHandlerRootView>
   );
 };
