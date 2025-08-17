@@ -26,7 +26,6 @@ const ArticleDetailsContainer = (props: IArticleDetailsContainer) => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const showCompleteArticle = (event: HandlerStateChangeEvent) => {
     if (event.nativeEvent.state == State.ACTIVE) {
-      console.log("Presenting BottomSheetModal");
       bottomSheetRef.current?.present();
     }
   };
@@ -34,7 +33,7 @@ const ArticleDetailsContainer = (props: IArticleDetailsContainer) => {
   return (
     <>
       <TapGestureHandler
-        numberOfTaps={2}
+        numberOfTaps={1}
         onHandlerStateChange={showCompleteArticle}
       >
         <View style={styles.container}>

@@ -10,3 +10,7 @@ export enum ERequestStatus {
   SUCCESS = "success",
   FAILED = "failed",
 }
+export enum ELayoutMode {
+  PORTRAIT = "portrait",
+  LANDSCAPE = "landscape",
+}

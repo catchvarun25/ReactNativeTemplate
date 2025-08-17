@@ -16,9 +16,9 @@ import {
   RootStackParamList,
 } from "../../navigations/NavigationTypes";
 import VMArticleListItem from "../../components/VMArticleListItem";
-import withLoader from "../../hocs/WithLoader";
-import { ERequestStatus } from "../../utility/CommonInterface";
+import { ELayoutMode, ERequestStatus } from "../../utility/CommonInterface";
 import { API_PAGES_SIZE } from "../../sagas/articleList/Interface";
+import { useStorage, EStorageKeys } from "../../utility/storage";
 
 interface IArticleListContainer
   extends NativeStackScreenProps<
@@ -34,10 +34,11 @@ type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 const ArticleListContainer = (
   props: IArticleListContainer & StateProps & DispatchProps
 ) => {
-  const ARTICLE_ITEM_HEIGHT = 150;
   const { articles, requestArticleList, status, shouldLoadMore, navigation } =
     props;
   const pageNumber = useRef(0);
+  const [layoutMode, setLayoutMode] = useStorage(EStorageKeys.LayoutMode);
+  const ARTICLE_ITEM_HEIGHT = layoutMode == ELayoutMode.PORTRAIT ? 110 : 280;
 
   //TODO: Add Profile page to update the current location. Which is auto adjusted to usesr current location
   const requestMoreArticles = () => {
@@ -62,12 +63,13 @@ const ArticleListContainer = (
     ({ item }: ListRenderItemInfo<IArticleItemResponse>) => {
       return (
         <VMArticleListItem
+          layoutMode={layoutMode}
           itemData={item}
           didSelectArticle={showArticleDetails}
         />
       );
     },
-    []
+    [layoutMode]
   );
 
   const keyExtractor = useCallback(
@@ -83,7 +85,7 @@ const ArticleListContainer = (
       offset: ARTICLE_ITEM_HEIGHT * index,
       index,
     }),
-    []
+    [ARTICLE_ITEM_HEIGHT]
   );
 
   const loadeMoreData = () => {
