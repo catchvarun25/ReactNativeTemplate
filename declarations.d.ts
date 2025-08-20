@@ -1,5 +1,3 @@
-//For SASS/SCSS
-declare module "*.scss";
 //For SVG files as React Component
 declare module "*.svg" {
   import React from "react";
@@ -7,3 +5,5 @@ declare module "*.svg" {
   const content: React.FC<SvgProps>;
   export default content;
 }
+// For redux-mock-store in test files
+declare module "redux-mock-store";

@@ -18,7 +18,7 @@ module.exports = (async () => {
       assetExts: defaultConfig.resolver.assetExts.filter(
         (ext) => ext !== "svg"
       ),
-      sourceExts: [...defaultConfig.resolver.sourceExts, "scss", "sass", "svg"],
+      sourceExts: [...defaultConfig.resolver.sourceExts, "svg"],
     },
   };
 

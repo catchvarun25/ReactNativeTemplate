@@ -7,7 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import styles from "./VMButton.scss";
+import styles from "./VMButton.styles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 export interface IVMButton extends TouchableHighlightProps {

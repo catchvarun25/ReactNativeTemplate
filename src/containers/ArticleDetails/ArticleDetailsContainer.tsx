@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import FastImage from "react-native-fast-image";
 import { Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import styles from "./ArticleDetailsContainer.scss";
+import styles from "./ArticleDetailsContainer.styles";
 import {
   IScreenName,
   RootStackParamList,

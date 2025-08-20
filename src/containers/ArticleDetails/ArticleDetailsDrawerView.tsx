@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from "react";
 import { View } from "react-native";
-import styles from "./ArticleDetailsDrawerView.scss";
+import styles from "./ArticleDetailsDrawerView.styles";
 import VMDrawerView from "../../components/VMDrawerView";
 import VMActivityLoader from "../../components/VMActivityLoader";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";

@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import { IAppRootState } from "../../reducers";
-import styles from "./ArticleListContainer.scss";
+import styles from "./ArticleListContainer.styles";
 import { Dispatch } from "redux";
 import {
   IArticleItemResponse,

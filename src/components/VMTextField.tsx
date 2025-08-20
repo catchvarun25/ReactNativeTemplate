@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { StyleProp, TextInputProps, ViewStyle } from "react-native";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import styles from "./VMTextField.scss";
+import styles from "./VMTextField.styles";
 
 interface IVMTextField extends TextInputProps {
   style?: StyleProp<ViewStyle>;

@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from "react";
 import { View, TouchableOpacity, Image, StyleProp } from "react-native";
-import styles from "./VMDrawerView.scss";
+import styles from "./VMDrawerView.styles";
 import dismissIcon from "../assets/close_button.png";
 import { BottomSheetBackgroundProps } from "@gorhom/bottom-sheet";
 

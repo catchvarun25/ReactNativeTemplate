@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import FastImage from "react-native-fast-image";
-import style from "./VMArticleListItem.scss";
+import style from "./VMArticleListItem.styles";
 import { IArticleItemResponse } from "../sagas/articleList/Interface";
 import { ELayoutMode } from "../utility/CommonInterface";
 
