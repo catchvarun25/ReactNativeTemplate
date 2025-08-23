@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Login.scss";
+import styles from "./Login.styles";
 import { View, Text, useColorScheme } from "react-native";
 import VMButton from "../../components/VMButton";
 import VMTextField from "../../components/VMTextField";
