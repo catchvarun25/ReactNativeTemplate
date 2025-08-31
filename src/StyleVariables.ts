@@ -12,6 +12,7 @@ export const Colors = {
   oddItem: "#eee",
   greyBorder: "#ccc",
   darkSalamon: "#e9967a",
+  antiqueWhite: "#faebd7",
 };
 
 export const FontSizes = {

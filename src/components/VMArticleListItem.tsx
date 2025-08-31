@@ -59,9 +59,9 @@ const VMArticleListItem = React.memo((props: IVMArticleListItem) => {
           }
         >
           <Text style={style.title}>{title}</Text>
-          <Text style={style.author}>
-            {"-"}
-            {author} from {sourceName}
+          <Text>
+            <Text style={style.author}>{author}</Text> -{" "}
+            <Text style={style.source}>{sourceName}</Text>
           </Text>
         </View>
       </View>

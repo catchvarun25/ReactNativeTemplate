@@ -53,6 +53,6 @@ export default StyleSheet.create({
   },
   source: {
     fontSize: FontSizes.xs,
-    color: Colors.purple,
+    color: Colors.grey,
   },
 });

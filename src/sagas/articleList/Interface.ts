@@ -10,12 +10,12 @@ export interface IArticleListRequest {
 }
 
 export enum ENewsCategoryType {
+  GENERAL = "general",
   BUSINESS = "business",
   ENTERTAINMENT = "entertainment",
-  GENERAL = "general",
+  SPORTS = "sports",
   HEALTH = "health",
   SCIENCE = "science",
-  SPORTS = "sports",
   TECHNOLOGY = "technology",
 }
 
