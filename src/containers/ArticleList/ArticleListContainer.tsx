@@ -5,7 +5,7 @@ import { Dispatch } from "redux";
 import {
   IArticleItemResponse,
   IArticleListRequest,
-  ICategoryType,
+  ENewsCategoryType,
 } from "../../sagas/articleList/Interface";
 import { View, Text, FlatList, ListRenderItemInfo } from "react-native";
 import { requestArticleList } from "../../reducers/ArticleListReducers";
@@ -24,9 +24,7 @@ interface IArticleListContainer
   extends NativeStackScreenProps<
     RootStackParamList,
     IScreenName.ArticleDetails
-  > {
-  articles: Array<IArticleItemResponse>;
-}
+  > {}
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
@@ -34,8 +32,15 @@ type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 const ArticleListContainer = (
   props: IArticleListContainer & StateProps & DispatchProps
 ) => {
-  const { articles, requestArticleList, status, shouldLoadMore, navigation } =
-    props;
+  const {
+    articles,
+    requestArticleList,
+    status,
+    shouldLoadMore,
+    navigation,
+    route,
+  } = props;
+  const { categoryType } = route.params as { categoryType: ENewsCategoryType };
   const pageNumber = useRef(0);
   const [layoutMode, setLayoutMode] = useStorage(EStorageKeys.LayoutMode);
   const ARTICLE_ITEM_HEIGHT = layoutMode == ELayoutMode.PORTRAIT ? 110 : 280;
@@ -44,14 +49,14 @@ const ArticleListContainer = (
   const requestMoreArticles = () => {
     requestArticleList({
       page: pageNumber.current,
-      category: ICategoryType.BUSINESS,
+      category: categoryType,
       country: "us",
     });
   };
 
   useEffect(() => {
     requestMoreArticles();
-  }, []);
+  }, [categoryType]);
 
   const showArticleDetails = (selectedArticle: IArticleItemResponse) => {
     navigation.push(IScreenName.ArticleDetails, {
@@ -98,7 +103,9 @@ const ArticleListContainer = (
   return (
     <View style={styles.container}>
       <FlatList
-        data={articles.filter((article) => article.urlToImage)}
+        data={(articles[categoryType] || []).filter(
+          (article) => article.urlToImage
+        )}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}

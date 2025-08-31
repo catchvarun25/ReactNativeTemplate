@@ -5,11 +5,11 @@ export const API_PAGES_SIZE = 15;
 //TODO: Update supported countries
 export interface IArticleListRequest {
   page: number;
-  category: ICategoryType;
+  category: ENewsCategoryType;
   country: string;
 }
 
-export enum ICategoryType {
+export enum ENewsCategoryType {
   BUSINESS = "business",
   ENTERTAINMENT = "entertainment",
   GENERAL = "general",
@@ -20,7 +20,7 @@ export enum ICategoryType {
 }
 
 export interface IArticleListState {
-  articles: Array<IArticleItemResponse>;
+  articles: Record<ENewsCategoryType, Array<IArticleItemResponse>>;
   status: ERequestStatus;
   message?: string;
   page: number;
@@ -29,6 +29,7 @@ export interface IArticleListState {
 
 export interface IArticleListResponse {
   articles: Array<IArticleItemResponse>;
+  category: ENewsCategoryType;
   status: string;
   totalResults: number;
 }

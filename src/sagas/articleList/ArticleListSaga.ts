@@ -20,7 +20,9 @@ function* getArticleList(action: PayloadAction<IArticleListRequest>) {
         pageSize: API_PAGES_SIZE,
       }
     );
-    yield put(successArticleList(data ?? {}));
+    yield put(
+      successArticleList({ ...data, category: action.payload.category })
+    );
   } catch {
     yield put(errorArticleList("Request failed. Please try again later."));
   }

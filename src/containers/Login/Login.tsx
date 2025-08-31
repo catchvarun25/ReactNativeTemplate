@@ -47,12 +47,12 @@ export const LoginScreen = (props: ILoginScreenProps) => {
     //   userName: userName,
     //   password: password,
     // });
-    navigation.replace(IScreenName.ArticlesList);
+    navigation.replace(IScreenName.ArticleTabs);
   };
 
   useEffect(() => {
     if (loginStatus == ERequestStatus.SUCCESS) {
-      navigation.navigate(IScreenName.ArticlesList);
+      navigation.navigate(IScreenName.ArticleTabs);
     }
   }, [loginStatus]);
 

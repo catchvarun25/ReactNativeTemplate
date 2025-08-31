@@ -1324,6 +1324,27 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-pager-view (6.9.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.10.14.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - react-native-safe-area-context (4.14.1):
     - DoubleConversion
     - glog
@@ -1931,6 +1952,7 @@ DEPENDENCIES:
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-config/Extension (from `../node_modules/react-native-config`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
@@ -2055,6 +2077,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -2172,6 +2196,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: a645237a841d733861c70b69908ab4a1707b52ad
   react-native-config: b2afdf5efe0848b5f9d4cb8b5a62d90b1385a722
   react-native-mmkv: 4a7ffae0150e11d2f02084c00e356122bb53ecc8
+  react-native-pager-view: 867ae827a2865fec3bb3dc107c6dffa5ca642456
   react-native-safe-area-context: 27b2c38036e0b673b5ade35d54db7aaa3affa717
   react-native-webview: 23c8dbb115aec1a0bb59257876d3f8df14219612
   React-nativeconfig: 8efdb1ef1e9158c77098a93085438f7e7b463678
