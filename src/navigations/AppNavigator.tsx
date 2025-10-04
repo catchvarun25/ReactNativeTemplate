@@ -24,7 +24,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={IScreenName.Login}
+        initialRouteName={IScreenName.ArticleTabs}
         screenOptions={{
           headerTintColor: "black", // 👈 changes back button + header text color
           headerBackTitleVisible: false, // 👈 hides the label

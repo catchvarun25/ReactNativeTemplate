@@ -4,16 +4,20 @@ import {
   errorArticleList,
   successArticleList,
 } from "../../reducers/ArticleListReducers";
-import { callRestAPI, END_POINT, REST_METHODS } from "../../WebService";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IArticleListRequest, API_PAGES_SIZE } from "./Interface";
+import {
+  newsService,
+  NEWS_END_POINT,
+  REST_METHODS,
+} from "../../network/services";
 
 //TODO: Can we use IArticleListRequest
 function* getArticleList(action: PayloadAction<IArticleListRequest>) {
   try {
     const { data } = yield call(
-      callRestAPI,
-      END_POINT.TOP_HEADLINES,
+      newsService,
+      NEWS_END_POINT.TOP_HEADLINES,
       REST_METHODS.GET,
       {
         ...action.payload,
